@@ -1,24 +1,27 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import './multiple_choice_display.html';
+import './question_display.html';
 
-Template.multiple_choice_display.onCreated(function scoreDisplayOnCreated() {
+Template.question_display.onCreated(function scoreDisplayOnCreated() {
   this.score1 = new ReactiveVar(0);
   this.score2 = new ReactiveVar(0);
   this.hasVoted = new ReactiveVar(false);
 });
 
-Template.multiple_choice_display.helpers({
+Template.question_display.helpers({
   score1() {
     return Template.instance().score1.get();
   },
   score2() {
     return Template.instance().score2.get();
   },
+  videoId() {
+  	return "JGnmfbD20og";
+  }
 });
 
-Template.multiple_choice_display.events({
+Template.question_display.events({
   'click .choices'(event, instance) {
   	if (instance.hasVoted.get()) {
   		window.alert("Already voted on this question, scrub.");
